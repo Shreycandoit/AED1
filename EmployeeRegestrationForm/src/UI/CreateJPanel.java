@@ -195,6 +195,16 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        
+        String Name = txtName.getText();
+        String Id = txtEmpId.getText();
+        int Age = Integer.parseInt(txtAge.getText());
+        String Gender = txtGender.getText();
+        String StartDate = txtStartDate.getText();
+        String Level = txtLevel.getText();
+        String TeamInfo = txtTeamInfo.getText();
+        String PositionTitle = txtPositionTitle.getText();        
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
