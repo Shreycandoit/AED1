@@ -218,6 +218,16 @@ public class CreateJPanel extends javax.swing.JPanel {
         newEmp.setEmpPositionTitle(PositionTitle);
         
         JOptionPane.showMessageDialog(this,"New Employee Record Added");
+        
+        //Clearing the textfields
+        txtName.setText("");
+        txtEmpId.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtStartDate.setText("");
+        txtLevel.setText("");
+        txtTeamInfo.setText("");
+        txtPositionTitle.setText("");
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
