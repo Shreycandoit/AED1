@@ -4,7 +4,9 @@
  */
 package UI;
 
+import Model.Employee;
 import Model.EmployeeData;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +17,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    EmployeeData EmpData;
+    EmployeeData empData;
     
     public CreateJPanel(EmployeeData EmpData) {
         initComponents();
@@ -205,6 +207,17 @@ public class CreateJPanel extends javax.swing.JPanel {
         String TeamInfo = txtTeamInfo.getText();
         String PositionTitle = txtPositionTitle.getText();        
         
+        Employee newEmp = empData.addNewEmployee();
+        newEmp.setEmpName(Name);
+        newEmp.setEmpId(Id);
+        newEmp.setEmpAge(Age);
+        newEmp.setEmpGender(Gender);
+        newEmp.setEmpStartDate(StartDate);
+        newEmp.setEmpLevel(Level);
+        newEmp.setEmpTeamInfo(TeamInfo);
+        newEmp.setEmpPositionTitle(PositionTitle);
+        
+        JOptionPane.showMessageDialog(this,"New Employee Record Added");
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
