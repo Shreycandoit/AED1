@@ -18,9 +18,7 @@ public class Employee {
     private String EmpLevel;
     private String EmpTeamInfo;
     private String EmpPositionTitle;
-    private String EmpCellphone;
-    private String EmpEmail;
-
+    
     public String getEmpName() {
         return EmpName;
     }
@@ -85,21 +83,6 @@ public class Employee {
         this.EmpPositionTitle = EmpPositionTitle;
     }
 
-    public String getEmpCellphone() {
-        return EmpCellphone;
-    }
-
-    public void setEmpCellphone(String EmpCellphone) {
-        this.EmpCellphone = EmpCellphone;
-    }
-
-    public String getEmpEmail() {
-        return EmpEmail;
-    }
-
-    public void setEmpEmail(String EmpEmail) {
-        this.EmpEmail = EmpEmail;
-    }
     
     
 }

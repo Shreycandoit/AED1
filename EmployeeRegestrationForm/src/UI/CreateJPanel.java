@@ -19,8 +19,9 @@ public class CreateJPanel extends javax.swing.JPanel {
      */
     EmployeeData empData;
     
-    public CreateJPanel(EmployeeData EmpData) {
+    public CreateJPanel(EmployeeData empData) {
         initComponents();
+        this.empData = empData;
     }
 
     /**
