@@ -17,6 +17,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     
     EmployeeData EmpData;
+    
     public MainJFrame() {
         initComponents();
         
@@ -59,6 +60,11 @@ public class MainJFrame extends javax.swing.JFrame {
         btnUpdate.setText("Update");
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CRUDPanelLayout = new javax.swing.GroupLayout(CRUDPanel);
         CRUDPanel.setLayout(CRUDPanelLayout);
@@ -118,6 +124,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
+       
+        ReadJPanel readView = new ReadJPanel(EmpData);
+        SplitPane.setRightComponent(readView);
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -125,6 +134,12 @@ public class MainJFrame extends javax.swing.JFrame {
         CreateJPanel createView = new CreateJPanel(EmpData);
         SplitPane.setRightComponent(createView);
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
