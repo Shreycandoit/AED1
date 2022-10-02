@@ -10,14 +10,15 @@ package Model;
  */
 public class Employee {
     
-    private String EmpName;
-    private String EmpId;
-    private int EmpAge;
-    private String EmpGender;
-    private String EmpStartDate;
-    private String EmpLevel;
-    private String EmpTeamInfo;
-    private String EmpPositionTitle;
+    public String EmpName;
+    public String EmpId;
+    public int EmpAge;
+    public String EmpGender;
+    public String EmpStartDate;
+    public String EmpLevel;
+    public String EmpTeamInfo;
+    public String EmpPositionTitle;
+    
     
     public String getEmpName() {
         return EmpName;
