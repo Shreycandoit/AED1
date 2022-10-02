@@ -37,8 +37,6 @@ public class MainJFrame extends javax.swing.JFrame {
         CRUDPanel = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnRead = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         MainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,15 +55,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnUpdate.setText("Update");
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout CRUDPanelLayout = new javax.swing.GroupLayout(CRUDPanel);
         CRUDPanel.setLayout(CRUDPanelLayout);
         CRUDPanelLayout.setHorizontalGroup(
@@ -73,10 +62,8 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(CRUDPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreate)
                     .addComponent(btnRead)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(btnCreate))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         CRUDPanelLayout.setVerticalGroup(
@@ -86,11 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreate)
                 .addGap(18, 18, 18)
                 .addComponent(btnRead)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addContainerGap(492, Short.MAX_VALUE))
+                .addContainerGap(574, Short.MAX_VALUE))
         );
 
         SplitPane.setLeftComponent(CRUDPanel);
@@ -135,12 +118,6 @@ public class MainJFrame extends javax.swing.JFrame {
         SplitPane.setRightComponent(createView);
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -181,8 +158,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel MainPanel;
     private javax.swing.JSplitPane SplitPane;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRead;
-    private javax.swing.JButton btnUpdate;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package UI;
 
 import Model.Employee;
 import Model.EmployeeData;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +26,13 @@ public class ReadJPanel extends javax.swing.JPanel {
         initComponents();
         
         this.empData=empData;
+        filltable();
+    }
+    
+    public int giveSelectedRow()
+    {
+        int selectedRowIndex = tblEmp.getSelectedRow();
+        return selectedRowIndex;
     }
 
     
@@ -37,17 +45,17 @@ public class ReadJPanel extends javax.swing.JPanel {
         
         for(Employee emp : empData.getEmployeeData()){
         
-            Object[] col = new Object[8];
-            col[0] = emp.getEmpName();
-            col[1] = emp.getEmpId();
-            col[2] = emp.getEmpAge();
-            col[3] =emp.getEmpGender();
-            col[7] =emp.getEmpStartDate();
-            col[5] =emp.getEmpLevel();
-            col[6] =emp.getEmpTeamInfo();
-            col[7] =emp.getEmpPositionTitle();
+            Object[] row = new Object[8];
+            row[0] = emp;
+            row[1] = emp.getEmpId();
+            row[2] = emp.getEmpAge();
+            row[3] =emp.getEmpGender();
+            row[7] =emp.getEmpStartDate();
+            row[5] =emp.getEmpLevel();
+            row[6] =emp.getEmpTeamInfo();
+            row[7] =emp.getEmpPositionTitle();
             
-            model.addColumn(col);
+            model.addRow(row);
         }
     
     }
@@ -64,6 +72,8 @@ public class ReadJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmp = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        dltEmp = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         tblEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,17 +100,33 @@ public class ReadJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("View Empolyee Profiles");
 
+        dltEmp.setText("Delete");
+        dltEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dltEmpActionPerformed(evt);
+            }
+        });
+
+        btnView.setText("View");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(171, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(18, 18, 18)
+                        .addComponent(dltEmp)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,13 +134,39 @@ public class ReadJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dltEmp)
+                    .addComponent(btnView))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void dltEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dltEmpActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = tblEmp.getSelectedRow();
+        
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Plesea select a row to be deleted");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tblEmp.getModel();
+        Employee selectedEmployee = (Employee) model.getValueAt(selectedRow, 0);
+        
+       empData.deleteEmp(selectedEmployee);
+       
+       JOptionPane.showMessageDialog(this, "Employee profile deleted.");
+       
+       filltable();
+    }//GEN-LAST:event_dltEmpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnView;
+    private javax.swing.JButton dltEmp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEmp;

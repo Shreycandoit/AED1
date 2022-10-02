@@ -33,4 +33,8 @@ public class EmployeeData {
         return newEmployee;
         
     }
+    
+    public void deleteEmp(Employee emp){
+        EmployeeDataList.remove(emp);
+    }
 }

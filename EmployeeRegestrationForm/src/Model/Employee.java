@@ -82,7 +82,9 @@ public class Employee {
     public void setEmpPositionTitle(String EmpPositionTitle) {
         this.EmpPositionTitle = EmpPositionTitle;
     }
-
     
-    
+    @Override
+    public String toString(){
+    return EmpName;
+    }
 }
