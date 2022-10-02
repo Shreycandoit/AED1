@@ -10,82 +10,32 @@ package Model;
  */
 public class Employee {
     
-    public String EmpName;
-    public String EmpId;
-    public int EmpAge;
-    public String EmpGender;
-    public String EmpStartDate;
-    public String EmpLevel;
-    public String EmpTeamInfo;
-    public String EmpPositionTitle;
+    public String empName;
+    public String empId;
+    public int empAge;
+    public String empGender;
+    public String empStartDate;
+    public String empLevel;
+    public String empTeamInfo;
+    public String empPositionTitle;
+    public int empPhoneNumber;
+    public String empEmail;
+    public String empPicture;
     
-    
-    public String getEmpName() {
-        return EmpName;
-    }
-
-    public void setEmpName(String EmpName) {
-        this.EmpName = EmpName;
-    }
-
-    public String getEmpId() {
-        return EmpId;
-    }
-
-    public void setEmpId(String EmpId) {
-        this.EmpId = EmpId;
-    }
-
-    public int getEmpAge() {
-        return EmpAge;
-    }
-
-    public void setEmpAge(int EmpAge) {
-        this.EmpAge = EmpAge;
-    }
-
-    public String getEmpGender() {
-        return EmpGender;
-    }
-
-    public void setEmpGender(String EmpGender) {
-        this.EmpGender = EmpGender;
-    }
-
-    public String getEmpStartDate() {
-        return EmpStartDate;
-    }
-
-    public void setEmpStartDate(String EmpStartDate) {
-        this.EmpStartDate = EmpStartDate;
-    }
-
-    public String getEmpLevel() {
-        return EmpLevel;
-    }
-
-    public void setEmpLevel(String EmpLevel) {
-        this.EmpLevel = EmpLevel;
-    }
-
-    public String getEmpTeamInfo() {
-        return EmpTeamInfo;
-    }
-
-    public void setEmpTeamInfo(String EmpTeamInfo) {
-        this.EmpTeamInfo = EmpTeamInfo;
-    }
-
-    public String getEmpPositionTitle() {
-        return EmpPositionTitle;
-    }
-
-    public void setEmpPositionTitle(String EmpPositionTitle) {
-        this.EmpPositionTitle = EmpPositionTitle;
+    public Employee(String empName,String empId,int empAge,String empGender,String empStartDate,String empLevel,String empTeamInfo,String empPositionTitle,int empPhoneNumber,String empEmail,String empPicture)
+    {
+        this.empName=empName;
+        this.empId=empId;
+        this.empAge=empAge;
+        this.empGender=empGender;
+        this.empStartDate=empStartDate;
+        this.empLevel=empLevel;
+        this.empTeamInfo=empTeamInfo;
+        this.empPositionTitle=empPositionTitle;
+        this.empPhoneNumber=empPhoneNumber;
+        this.empEmail=empEmail;
+        this.empPicture=empPicture;
+        
     }
     
-    @Override
-    public String toString(){
-    return EmpName;
-    }
 }
