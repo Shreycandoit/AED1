@@ -6,8 +6,10 @@ package UI;
 
 import Model.Employee;
 import Model.EmployeeData;
+import static java.lang.Integer.parseInt;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
     int row;
     ArrayList<Employee> employeeList;
     DefaultTableModel dmt;
-    String placeHolder[] = new String[]{"empName","empId","empAge","empGender","empStartDate","empLevel","empTeamInfo","empPositionTitle","empPhoneNumber","empEmail","empPicture"};
+    String placeHolder[] = new String[]{"Name","Employee ID","Age","Gender","Start Date","Level","Team Info","Position Title","Phone Number","Email","Picture"};
     
     
     public MainJFrame() {
@@ -204,6 +206,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGender.setText("Gender");
+
+        jDateChooser.setDateFormatString("MM-dd-yyyy");
 
         jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
 
@@ -451,7 +455,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        String startDate = df.format(jDateChooser.getDate());
+        String empStartDate = df.format(jDateChooser.getDate());
         String imgPath = "image";
         
         String empName = txtFullName.getText();
@@ -467,7 +471,7 @@ public class MainJFrame extends javax.swing.JFrame {
         //String empPicture = picture handled for now
 
                 
-        Employee profileData = new Employee(empName,empId,empAge,empGender,startDate,empLevel,empTeamInfo,empPositionTitle,empPhoneNumber,empEmail,imgPath);
+        Employee profileData = new Employee(empName,empId,empAge,empGender,empStartDate,empLevel,empTeamInfo,empPositionTitle,empPhoneNumber,empEmail,imgPath);
         employeeList.add(profileData);
         
         showEmployeeProfiles();
@@ -475,10 +479,30 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        
+        employeeList.get(row).empName=txtFullName.getText();
+        employeeList.get(row).empId=txtEmpId.getText();
+        employeeList.get(row).empAge=parseInt(txtAge.getText());
+        employeeList.get(row).empGender=jComboBoxGender.getSelectedItem().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        employeeList.get(row).empStartDate = sdf.format(jDateChooser.getDate());
+        employeeList.get(row).empLevel = txtLevel.getText();
+        employeeList.get(row).empTeamInfo = txtTeamInfo.getText();
+        employeeList.get(row).empPositionTitle = txtPositionTitle.getText();
+        employeeList.get(row).empPhoneNumber = txtPhoneNumber.getText();
+        employeeList.get(row).empEmail = txtEmail.getText();
+        showEmployeeProfiles();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
+        int optn = JOptionPane.showConfirmDialog(null, "Delete This Employee Profile?", "Delete",JOptionPane.YES_NO_OPTION);
+        if(optn == 0){
+            dmt.removeRow(row);
+            employeeList.remove(row);
+            showEmployeeProfiles();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
@@ -495,8 +519,8 @@ public class MainJFrame extends javax.swing.JFrame {
         txtFullName.setText("");
         txtEmpId.setText("");
         txtAge.setText("");
-        //jComboBoxGender.
-        //jDateChooser.setText("");
+        jComboBoxGender.setSelectedItem(null);
+        jDateChooser.setDate(null);
         txtLevel.setText("");
         txtTeamInfo.setText("");
         txtPositionTitle.setText("");

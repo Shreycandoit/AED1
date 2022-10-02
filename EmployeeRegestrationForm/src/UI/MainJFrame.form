@@ -442,6 +442,9 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="MM-dd-yyyy"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxGender">
               <Properties>
