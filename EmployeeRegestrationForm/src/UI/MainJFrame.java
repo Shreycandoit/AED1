@@ -21,7 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     
     //EmployeeData EmpData;
-    //int row;
+    int row;
     ArrayList<Employee> employeeList;
     DefaultTableModel dmt;
     String placeHolder[] = new String[]{"empName","empId","empAge","empGender","empStartDate","empLevel","empTeamInfo","empPositionTitle","empPhoneNumber","empEmail","empPicture"};
@@ -156,6 +156,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblEmp);
@@ -498,6 +503,24 @@ public class MainJFrame extends javax.swing.JFrame {
         txtPhoneNumber.setText("");
         txtEmail.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void tblEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpMouseClicked
+        // TODO add your handling code here:
+        
+        row = tblEmp.getSelectedRow();
+        
+        txtFullName.setText(dmt.getValueAt(row, 0).toString());
+        txtEmpId.setText(dmt.getValueAt(row, 1).toString());
+        txtAge.setText(dmt.getValueAt(row, 2).toString());
+        //jComboBoxGender.set
+        //jDateChooser.setText("");
+        txtLevel.setText(dmt.getValueAt(row, 5).toString());
+        txtTeamInfo.setText(dmt.getValueAt(row, 6).toString());
+        txtPositionTitle.setText(dmt.getValueAt(row, 7).toString());
+        txtPhoneNumber.setText(dmt.getValueAt(row, 8).toString());
+        txtEmail.setText(dmt.getValueAt(row, 9).toString());
+        
+    }//GEN-LAST:event_tblEmpMouseClicked
 
     /**
      * @param args the command line arguments
