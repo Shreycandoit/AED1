@@ -19,10 +19,10 @@ public class ReadJPanel extends javax.swing.JPanel {
      * Creates new form ReadJPanel
      */
     
-    int row;
-    String name;
+    //int row;
+    //String name;
     EmployeeData empData;
-    Employee emp;
+    //Employee emp;
     
     
     public ReadJPanel(EmployeeData empData) {
@@ -43,24 +43,6 @@ public class ReadJPanel extends javax.swing.JPanel {
     
     private void filltable(){
         
-        DefaultTableModel model = (DefaultTableModel) tblEmp.getModel();
-        model.setRowCount(0);
-        
-        for(Employee emp : empData.getEmployeeData()){
-        
-            Object[] row = new Object[8];
-            row[0] = emp;
-            row[1] = emp.getEmpId();
-            row[2] = emp.getEmpAge();
-            row[3] =emp.getEmpGender();
-            row[7] =emp.getEmpStartDate();
-            row[5] =emp.getEmpLevel();
-            row[6] =emp.getEmpTeamInfo();
-            row[7] =emp.getEmpPositionTitle();
-            
-            model.addRow(row);
-        }
-    
     }
     
     /**
@@ -304,20 +286,7 @@ public class ReadJPanel extends javax.swing.JPanel {
 
     private void tblEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblEmp.getModel();
-        row = tblEmp.getSelectedRow();
-        emp.setEmpName(model.getValueAt(row, 0).toString());
-        emp.setEmpId(model.getValueAt(row, 1).toString());
-        emp.setEmpAge(Integer.parseInt(model.getValueAt(row, 2).toString()));
-        emp.setEmpGender(model.getValueAt(row, 3).toString());
-        emp.setEmpGender(model.getValueAt(row, 4).toString());
-        emp.setEmpStartDate(model.getValueAt(row, 5).toString());
-        emp.setEmpLevel(model.getValueAt(row, 6).toString());
-        emp.setEmpTeamInfo(model.getValueAt(row, 7).toString());
-        emp.setEmpPositionTitle(model.getValueAt(row, 8).toString());
-        
-        
-        
+          
     }//GEN-LAST:event_tblEmpMouseClicked
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed

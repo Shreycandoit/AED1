@@ -26,14 +26,6 @@ public class EmployeeData {
         this.EmployeeDataList = EmployeeData;
     }
     
-    public Employee addNewEmployee()
-    {
-        Employee newEmployee = new Employee();
-        EmployeeDataList.add(newEmployee);
-        return newEmployee;
-        
-    }
-    
     public void deleteEmp(Employee emp){
         EmployeeDataList.remove(emp);
     }

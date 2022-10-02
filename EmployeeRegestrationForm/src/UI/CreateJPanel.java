@@ -199,26 +199,6 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         
-        String Name = txtName.getText();
-        String Id = txtEmpId.getText();
-        int Age = Integer.parseInt(txtAge.getText());
-        String Gender = txtGender.getText();
-        String StartDate = txtStartDate.getText();
-        String Level = txtLevel.getText();
-        String TeamInfo = txtTeamInfo.getText();
-        String PositionTitle = txtPositionTitle.getText();        
-        
-        Employee newEmp = empData.addNewEmployee();
-        newEmp.setEmpName(Name);
-        newEmp.setEmpId(Id);
-        newEmp.setEmpAge(Age);
-        newEmp.setEmpGender(Gender);
-        newEmp.setEmpStartDate(StartDate);
-        newEmp.setEmpLevel(Level);
-        newEmp.setEmpTeamInfo(TeamInfo);
-        newEmp.setEmpPositionTitle(PositionTitle);
-        
-        JOptionPane.showMessageDialog(this,"New Employee Record Added");
         
         //Clearing the textfields
         txtName.setText("");

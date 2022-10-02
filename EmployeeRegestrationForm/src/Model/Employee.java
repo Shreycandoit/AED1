@@ -18,11 +18,11 @@ public class Employee {
     public String empLevel;
     public String empTeamInfo;
     public String empPositionTitle;
-    public int empPhoneNumber;
+    public String empPhoneNumber;
     public String empEmail;
     public String empPicture;
     
-    public Employee(String empName,String empId,int empAge,String empGender,String empStartDate,String empLevel,String empTeamInfo,String empPositionTitle,int empPhoneNumber,String empEmail,String empPicture)
+    public Employee(String empName,String empId,int empAge,String empGender,String empStartDate,String empLevel,String empTeamInfo,String empPositionTitle,String empPhoneNumber,String empEmail,String empPicture)
     {
         this.empName=empName;
         this.empId=empId;

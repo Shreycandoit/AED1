@@ -20,8 +20,8 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
-    EmployeeData EmpData;
-    int row;
+    //EmployeeData EmpData;
+    //int row;
     ArrayList<Employee> employeeList;
     DefaultTableModel dmt;
     String placeHolder[] = new String[]{"empName","empId","empAge","empGender","empStartDate","empLevel","empTeamInfo","empPositionTitle","empPhoneNumber","empEmail","empPicture"};
@@ -29,10 +29,11 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
-        initialize(); //initiallizing
+        //initialize(); //initiallizing
         
         employeeList = new ArrayList<>();
-        EmpData = new EmployeeData();
+        dmt = new DefaultTableModel(placeHolder,0);
+   //     EmpData = new EmployeeData();
         tblEmp.setModel(dmt);
     }
 
@@ -94,11 +95,14 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         btnClear.setText("CLEAR");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         lblSearchEmployee.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lblSearchEmployee.setText("Search Employee");
-
-        txtSearchbar.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -453,7 +457,7 @@ public class MainJFrame extends javax.swing.JFrame {
         String empLevel = txtLevel.getText();
         String empTeamInfo = txtTeamInfo.getText();
         String empPositionTitle = txtPositionTitle.getText();
-        int empPhoneNumber = Integer.parseInt(txtPhoneNumber.getText());
+        String empPhoneNumber = txtPhoneNumber.getText();
         String empEmail = txtEmail.getText();
         //String empPicture = picture handled for now
 
@@ -479,6 +483,21 @@ public class MainJFrame extends javax.swing.JFrame {
     private void txtLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLevelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLevelActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        
+        txtFullName.setText("");
+        txtEmpId.setText("");
+        txtAge.setText("");
+        //jComboBoxGender.
+        //jDateChooser.setText("");
+        txtLevel.setText("");
+        txtTeamInfo.setText("");
+        txtPositionTitle.setText("");
+        txtPhoneNumber.setText("");
+        txtEmail.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -553,7 +572,4 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtTeamInfo;
     // End of variables declaration//GEN-END:variables
 
-    private void initialize() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
