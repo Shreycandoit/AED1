@@ -6,10 +6,15 @@ package UI;
 
 import Model.Employee;
 import Model.EmployeeData;
+import java.awt.Image;
+import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -86,7 +91,7 @@ public class MainJFrame extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        Picture = new javax.swing.JLabel();
+        lblPicture = new javax.swing.JLabel();
         btnAdd = new javax.swing.JToggleButton();
         btnUpdate = new javax.swing.JToggleButton();
         btnDelete = new javax.swing.JToggleButton();
@@ -259,14 +264,14 @@ public class MainJFrame extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Picture, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(lblPicture, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Picture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPicture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -507,8 +512,27 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
         // TODO add your handling code here:
+        
+        JFileChooser browseFile = new JFileChooser();
+        
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browseFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseFile.showOpenDialog(null);
+         
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = browseFile.getSelectedFile();
+            String selectedPath = selectedFile.getAbsolutePath();
+            JOptionPane.showMessageDialog(null, selectedPath);
+            //Display image on jlable
+            ImageIcon imgicon = new ImageIcon(selectedPath);
+//            Resize image to fit jlabel
+            Image img = imgicon.getImage().getScaledInstance(lblPicture.getWidth(), lblPicture.getHeight(), Image.SCALE_SMOOTH);
+             
+            lblPicture.setIcon(new ImageIcon(img));
+        
+        
     }//GEN-LAST:event_btnAttachActionPerformed
-
+    }
     private void txtLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLevelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLevelActionPerformed
@@ -582,7 +606,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Picture;
     private javax.swing.JToggleButton btnAdd;
     private javax.swing.JToggleButton btnAttach;
     private javax.swing.JToggleButton btnClear;
@@ -603,6 +626,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblLable;
     private javax.swing.JLabel lblPhoneNumber;
+    private javax.swing.JLabel lblPicture;
     private javax.swing.JLabel lblPositionTitle;
     private javax.swing.JLabel lblSearchEmployee;
     private javax.swing.JLabel lblStartDate;
