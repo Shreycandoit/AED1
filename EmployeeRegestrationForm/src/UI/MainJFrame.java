@@ -36,6 +36,14 @@ public class MainJFrame extends javax.swing.JFrame {
         tblEmp.setModel(dmt);
     }
 
+    
+    public void showEmployeeProfiles(){
+        dmt.setRowCount(0);
+        for(int i=0; i<employeeList.size();i++){
+            Object[] obj = {employeeList.get(i).empName,employeeList.get(i).empId,employeeList.get(i).empAge,employeeList.get(i).empGender,employeeList.get(i).empStartDate,employeeList.get(i).empLevel,employeeList.get(i).empTeamInfo,employeeList.get(i).empPositionTitle,employeeList.get(i).empPhoneNumber,employeeList.get(i).empEmail,employeeList.get(i).empPicture}; 
+            dmt.addRow(obj);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -452,6 +460,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 
         Employee profileData = new Employee(empName,empId,empAge,empGender,startDate,empLevel,empTeamInfo,empPositionTitle,empPhoneNumber,empEmail,imgPath);
         employeeList.add(profileData);
+        
+        showEmployeeProfiles();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
