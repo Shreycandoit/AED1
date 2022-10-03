@@ -47,6 +47,63 @@ public class MainJFrame extends javax.swing.JFrame {
    //     EmpData = new EmployeeData();
         tblEmp.setModel(dmt);
     }
+    
+   public boolean Validation(){
+   if(txtFullName.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter name");
+       return false;
+   }
+   if(txtEmail.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter am email");
+       return false;
+   }
+   if(!txtEmail.getText().matches("^.+@.+\\..+$")){
+       JOptionPane.showMessageDialog(this, "Please enter a valid email");
+       return false;
+   }
+   if(txtEmpId.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter employee Id");
+       return false;
+   }
+   if(txtAge.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter Age");
+       return false;
+   }
+   if(jDateChooser.getDate()==null){
+       JOptionPane.showMessageDialog(this, "Please enter a date");
+       return false;
+   }
+   if(txtAge.getText().length() >3 ){
+       JOptionPane.showMessageDialog(this, "Age too big");
+       return false;
+   }if(txtLevel.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter a level");
+       return false;
+   }
+   if(txtTeamInfo.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter team info");
+       return false;
+   }
+   if(txtPositionTitle.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter position title");
+       return false;
+   }
+   if(txtPhoneNumber.getText().isEmpty()){
+       JOptionPane.showMessageDialog(this, "Please enter a phone number");
+       return false;
+   }
+   if(txtPhoneNumber.getText().length() > 10){
+       JOptionPane.showMessageDialog(this, "Phone number too long");
+       return false;
+   }
+   if(selectedImagePath == null){
+       JOptionPane.showMessageDialog(this, "Please select a Picture");
+       return false;
+   }
+   
+   return true;
+   }
+   
 
     
     public void showEmployeeProfiles(){
@@ -367,12 +424,11 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtEmpId)
-                            .addComponent(txtAge)))
+                            .addComponent(txtAge)
+                            .addComponent(jDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblLable, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
@@ -504,6 +560,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        
+        if(Validation()){
         SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         String empStartDate = df.format(jDateChooser.getDate());
        // String imgPath = "image";
@@ -526,7 +584,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         showEmployeeProfiles();
     }//GEN-LAST:event_btnAddActionPerformed
-
+}
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         
@@ -674,6 +732,7 @@ public class MainJFrame extends javax.swing.JFrame {
     {
         if(txtFullName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter a name");
+        
         }
         else if(txtEmpId.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter an Id");
