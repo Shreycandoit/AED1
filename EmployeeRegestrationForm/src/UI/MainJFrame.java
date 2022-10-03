@@ -16,6 +16,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.util.regex.*;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -32,8 +35,9 @@ public class MainJFrame extends javax.swing.JFrame {
     ArrayList<Employee> employeeList;
     DefaultTableModel dmt;
     String placeHolder[] = new String[]{"Name","Employee ID","Age","Gender","Start Date","Level","Team Info","Position Title","Phone Number","Email","Picture"};
-    
-    
+    String selectedImagePath;
+    Image img1;
+    ImageIcon icon1;
     public MainJFrame() {
         initComponents();
         //initialize(); //initiallizing
@@ -111,6 +115,12 @@ public class MainJFrame extends javax.swing.JFrame {
         lblSearchEmployee.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lblSearchEmployee.setText("Search Employee");
 
+        txtSearchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchbarKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -181,6 +191,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 txtFullNameActionPerformed(evt);
             }
         });
+        txtFullName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFullNameKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFullNameKeyTyped(evt);
+            }
+        });
 
         txtLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,11 +215,23 @@ public class MainJFrame extends javax.swing.JFrame {
         lblEmpId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEmpId.setText("Employee ID");
 
+        txtEmpId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmpIdKeyTyped(evt);
+            }
+        });
+
         lblTeamInfo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTeamInfo.setText("Team Info");
 
         lblAge.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAge.setText("Age");
+
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgeKeyTyped(evt);
+            }
+        });
 
         lblPositionTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPositionTitle.setText("Position Title");
@@ -221,11 +251,26 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Contact Info"));
 
+        txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPhoneNumberKeyTyped(evt);
+            }
+        });
+
         lblPhoneNumber.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPhoneNumber.setText("Phone Number");
 
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblEmail.setText("Email");
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -461,7 +506,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         String empStartDate = df.format(jDateChooser.getDate());
-        String imgPath = "image";
+       // String imgPath = "image";
         
         String empName = txtFullName.getText();
         String empId =txtEmpId.getText();
@@ -473,10 +518,10 @@ public class MainJFrame extends javax.swing.JFrame {
         String empPositionTitle = txtPositionTitle.getText();
         String empPhoneNumber = txtPhoneNumber.getText();
         String empEmail = txtEmail.getText();
-        //String empPicture = picture handled for now
+        String empPicture = selectedImagePath;
 
                 
-        Employee profileData = new Employee(empName,empId,empAge,empGender,empStartDate,empLevel,empTeamInfo,empPositionTitle,empPhoneNumber,empEmail,imgPath);
+        Employee profileData = new Employee(empName,empId,empAge,empGender,empStartDate,empLevel,empTeamInfo,empPositionTitle,empPhoneNumber,empEmail,empPicture);
         employeeList.add(profileData);
         
         showEmployeeProfiles();
@@ -527,10 +572,10 @@ public class MainJFrame extends javax.swing.JFrame {
             ImageIcon imgicon = new ImageIcon(selectedPath);
 //            Resize image to fit jlabel
             Image img = imgicon.getImage().getScaledInstance(lblPicture.getWidth(), lblPicture.getHeight(), Image.SCALE_SMOOTH);
-             
+            selectedImagePath = selectedPath;
             lblPicture.setIcon(new ImageIcon(img));
-        
-        
+            img1 = img;
+            icon1 = imgicon;    
     }//GEN-LAST:event_btnAttachActionPerformed
     }
     private void txtLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLevelActionPerformed
@@ -550,8 +595,19 @@ public class MainJFrame extends javax.swing.JFrame {
         txtPositionTitle.setText("");
         txtPhoneNumber.setText("");
         txtEmail.setText("");
+        lblPicture.setIcon(null);
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private ImageIcon cropImage(String imgPath, byte[] img){
+        ImageIcon myImage = null;
+        myImage = new ImageIcon(imgPath);
+        Image image = myImage.getImage();
+        Image newImage = image.getScaledInstance(lblPicture.getWidth(),lblPicture.getHeight(),Image.SCALE_SMOOTH);
+        icon1 = new ImageIcon(newImage);
+        return icon1;
+    }
+    
+    
     private void tblEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpMouseClicked
         // TODO add your handling code here:
         
@@ -566,9 +622,91 @@ public class MainJFrame extends javax.swing.JFrame {
         txtTeamInfo.setText(dmt.getValueAt(row, 6).toString());
         txtPositionTitle.setText(dmt.getValueAt(row, 7).toString());
         txtPhoneNumber.setText(dmt.getValueAt(row, 8).toString());
-        txtEmail.setText(dmt.getValueAt(row, 9).toString());
+        txtEmail.setText(dmt.getValueAt(row, 9).toString());  
+        String path = dmt.getValueAt(row, 10).toString();
+        selectedImagePath = path;
+        lblPicture.setIcon(cropImage(path, null));
         
     }//GEN-LAST:event_tblEmpMouseClicked
+
+    private void txtFullNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullNameKeyReleased
+         if(!Character.isAlphabetic(evt.getKeyChar()))
+       {
+           evt.consume();
+       }
+        
+    }//GEN-LAST:event_txtFullNameKeyReleased
+
+    private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
+       if(!Character.isDigit(evt.getKeyChar()))
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtAgeKeyTyped
+
+    private void txtEmpIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar()))
+       {
+           evt.consume();
+       }
+
+    }//GEN-LAST:event_txtEmpIdKeyTyped
+
+    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+        // TODO add your handling code here:
+         if(!Character.isDigit(evt.getKeyChar()))
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtPhoneNumberKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_txtEmailKeyReleased
+
+    public boolean isEmpty()
+    {
+        if(txtFullName.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter a name");
+        }
+        else if(txtEmpId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter an Id");
+        }
+        else if(txtAge.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter age");
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+    
+    private void txtFullNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFullNameKeyTyped
+        // TODO add your handling code here:
+          // TODO add your handling code here:
+         if(Character.isDigit(evt.getKeyChar()))
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtFullNameKeyTyped
+
+    private void txtSearchbarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchbarKeyReleased
+        // TODO add your handling code here:
+        
+        dmt = (DefaultTableModel) tblEmp.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dmt);
+        tblEmp.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(txtSearchbar.getText().trim()));
+    }//GEN-LAST:event_txtSearchbarKeyReleased
 
     /**
      * @param args the command line arguments

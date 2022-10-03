@@ -97,6 +97,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSearchbar">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchbarKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -387,6 +390,8 @@
             <Component class="javax.swing.JTextField" name="txtFullName">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFullNameActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFullNameKeyReleased"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFullNameKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLevel">
@@ -406,6 +411,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmpId">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmpIdKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTeamInfo">
               <Properties>
@@ -420,6 +428,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAge">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblPositionTitle">
               <Properties>
@@ -513,6 +524,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="txtPhoneNumber">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPhoneNumberKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPhoneNumber">
                   <Properties>
@@ -527,6 +541,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtEmail">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyReleased"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
