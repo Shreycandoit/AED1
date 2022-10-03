@@ -587,7 +587,7 @@ public class MainJFrame extends javax.swing.JFrame {
 }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        
+      if(Validation()){  
         employeeList.get(row).empName=txtFullName.getText();
         employeeList.get(row).empId=txtEmpId.getText();
         employeeList.get(row).empAge=parseInt(txtAge.getText());
@@ -601,7 +601,7 @@ public class MainJFrame extends javax.swing.JFrame {
         employeeList.get(row).empEmail = txtEmail.getText();
         showEmployeeProfiles();
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         
